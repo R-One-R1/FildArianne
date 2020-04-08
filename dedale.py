@@ -30,6 +30,7 @@ def right():
     posX += 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
+        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 def left():
@@ -42,6 +43,7 @@ def left():
     posX -= 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
+        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 def up():
@@ -54,6 +56,7 @@ def up():
     posY -= 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
+        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 def down():
@@ -66,6 +69,7 @@ def down():
     posY += 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
+        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 
@@ -91,56 +95,216 @@ dir = []
 #    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX - 1]==1):
 #        return True
 #    return False
-
-
-def algo(value):
+def prioUp():
     if(map[posY - 1][posX]==2):
         up()
         dir.append(2)
         return
-    if(map[posY][posX + 1]==2):
+    elif(map[posY][posX + 1]==2):
         right()
         dir.append(1)
         return
+    elif(map[posY + 1][posX]==2):
+        down()
+        dir.append(4)
+        return
+    elif(map[posY][posX - 1]==2):
+        left()
+        dir.append(3)
+        return
+    elif(map[posY][posX + 1]==0):
+        right()
+        dir.append(1)
+        return
+    elif(map[posY - 1][posX]==0):
+        up()
+        dir.append(2)
+        return
+    elif(map[posY][posX - 1]==0):
+        left()
+        dir.append(3)
+        return
+    elif(map[posY + 1][posX]==0):
+        down()
+        dir.append(4)
+        return
+    elif(dir[-1]==2):
+        down()
+        dir.pop()
+        return
+    elif(dir[-1]==1):
+        left()
+        dir.pop()
+        return
+    elif(dir[-1]==4):
+        up()
+        dir.pop()
+        return
+    elif(dir[-1]==3):
+        right()
+        dir.pop()
+        return
+
+def prioDown():
     if(map[posY + 1][posX]==2):
         down()
         dir.append(4)
         return
-    if(map[posY][posX - 1]==2):
-        left()
-        dir.append(3)
-        return
-    if(map[posY][posX + 1]==0):
+    elif(map[posY][posX + 1]==2):
         right()
         dir.append(1)
         return
-    if(map[posY - 1][posX]==0):
+    elif(map[posY - 1][posX]==2):
         up()
         dir.append(2)
         return
-    if(map[posY][posX - 1]==0):
+    elif(map[posY][posX - 1]==2):
         left()
         dir.append(3)
         return
-    if(map[posY + 1][posX]==0):
+    elif(map[posY + 1][posX]==0):
         down()
         dir.append(4)
         return
-    if(dir[-1]==2):
-        down()
-        dir.pop()
+    elif(map[posY][posX + 1]==0):
+        right()
+        dir.append(1)
         return
-    if(dir[-1]==1):
+    elif(map[posY - 1][posX]==0):
+        up()
+        dir.append(2)
+        return
+    elif(map[posY][posX - 1]==0):
         left()
-        dir.pop()
+        dir.append(3)
         return
-    if(dir[-1]==4):
+    elif(dir[-1]==4):
         up()
         dir.pop()
         return
-    if(dir[-1]==3):
+    elif(dir[-1]==1):
+        left()
+        dir.pop()
+        return
+    elif(dir[-1]==2):
+        down()
+        dir.pop()
+        return
+    elif(dir[-1]==3):
         right()
         dir.pop()
+        return
+
+def prioLeft():
+        if(map[posY][posX - 1]==2):
+            left()
+            dir.append(3)
+            return
+        elif(map[posY - 1][posX]==2):
+            up()
+            dir.append(2)
+            return
+        elif(map[posY][posX + 1]==2):
+            right()
+            dir.append(1)
+            return
+        elif(map[posY + 1][posX]==2):
+            down()
+            dir.append(4)
+            return
+        elif(map[posY][posX - 1]==0):
+            left()
+            dir.append(3)
+            return
+        elif(map[posY - 1][posX]==0):
+            up()
+            dir.append(2)
+            return
+        elif(map[posY][posX + 1]==0):
+            right()
+            dir.append(1)
+            return
+        elif(map[posY + 1][posX]==0):
+            down()
+            dir.append(4)
+            return
+        elif(dir[-1]==3):
+            right()
+            dir.pop()
+            return
+        elif(dir[-1]==2):
+            down()
+            dir.pop()
+            return
+        elif(dir[-1]==1):
+            left()
+            dir.pop()
+            return
+        elif(dir[-1]==4):
+            up()
+            dir.pop()
+            return
+
+def prioRight():
+    if(map[posY][posX + 1]==2):
+        right()
+        dir.append(1)
+        return
+    elif(map[posY - 1][posX]==2):
+        up()
+        dir.append(2)
+        return
+    elif(map[posY][posX - 1]==2):
+        left()
+        dir.append(3)
+        return
+    elif(map[posY + 1][posX]==2):
+        down()
+        dir.append(4)
+        return
+    elif(map[posY][posX + 1]==0):
+        right()
+        dir.append(1)
+        return
+    elif(map[posY - 1][posX]==0):
+        up()
+        dir.append(2)
+        return
+    elif(map[posY][posX - 1]==0):
+        left()
+        dir.append(3)
+        return
+    elif(map[posY + 1][posX]==0):
+        down()
+        dir.append(4)
+        return
+    elif(dir[-1]==1):
+        left()
+        dir.pop()
+        return
+    elif(dir[-1]==2):
+        down()
+        dir.pop()
+        return
+    elif(dir[-1]==3):
+        right()
+        dir.pop()
+        return
+    elif(dir[-1]==4):
+        up()
+        dir.pop()
+        return
+nbreCase=0
+def algo(value):
+    nbreCase++
+    if(posY>21):
+        prioDown()
+        return
+    elif(posY<=21 and posX<47):
+        prioRight()
+        return
+    elif(posY<=21 and posX>=47):
+        prioLeft()
         return
 
 
