@@ -52,7 +52,6 @@ def up():
     setACaseXY(posX, posY, 'grey')
     map[posY][posX] = -1
     posY -= 1
-
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
         exit(0)
@@ -67,7 +66,7 @@ def down():
     posY += 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
-        exit(0)
+            exit(0)
 
 
 
@@ -75,10 +74,13 @@ dir = []
 
 def algo(value):
     right()
-    while(map[posY][posX + 1] != 1):
+    if(map[posY][posX + 1] == 1):
         down()
-        while(map[posY + 1][posX] != 1):
+        if(map[posY + 1][posX] == 1):
             up()
+            up()
+            if(map[posY - 1][posX]==1):
+                left()
 
 
 
