@@ -72,20 +72,32 @@ def down():
 
 dir = []
 
-def blockedTop:
-    if()
-def blockedDown:
-    if()
-def blockedRight:
-    if()
-def blockedLeft:
-    if()
+def blockedTop():
+    if(map[posY - 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
+        return True
+    return False
+
+def blockedDown():
+    if(map[posY + 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
+        return True
+    return False
+
+def blockedRight():
+    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX + 1]==1):
+        return True
+    return False
+
+def blockedLeft():
+    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX - 1]==1):
+        return True
+    return False
 
 
 def algo(value):
     right()
     if(map[posY][posX + 1]==1 && map[posY - 1][posX]==1 && map):
         down()
+
 
 
 
