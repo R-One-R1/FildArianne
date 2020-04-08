@@ -72,31 +72,78 @@ def down():
 
 dir = []
 
-def blockedTop():
-    if(map[posY - 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
-        return True
-    return False
+#def totalBlockedTop():
+#    if(map[posY - 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
+#        return True
+#    return False
 
-def blockedDown():
-    if(map[posY + 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
-        return True
-    return False
+#def totalBlockedDown():
+#    if(map[posY + 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
+#        return True
+#    return False
 
-def blockedRight():
-    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX + 1]==1):
-        return True
-    return False
+#def totalBlockedRight():
+#    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX + 1]==1):
+#        return True
+#    return False
 
-def blockedLeft():
-    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX - 1]==1):
-        return True
-    return False
+#def totalBlockedLeft():
+#    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX - 1]==1):
+#        return True
+#    return False
 
 
 def algo(value):
-    right()
-    if(map[posY][posX + 1]==1 && map[posY - 1][posX]==1 && map):
+    if(map[posY][posX + 1]==2):
+        right()
+        dir.append(1)
+        return
+    if(map[posY + 1][posX]==2):
         down()
+        dir.append(2)
+        return
+    if(map[posY][posX - 1]==2):
+        left()
+        dir.append(3)
+        return
+    if(map[posY - 1][posX]==2):
+        up()
+        dir.append(4)
+        return
+    if(map[posY][posX + 1]==0):
+        right()
+        dir.append(1)
+        return
+    if(map[posY + 1][posX]==0):
+        down()
+        dir.append(2)
+        return
+    if(map[posY][posX - 1]==0):
+        left()
+        dir.append(3)
+        return
+    if(map[posY - 1][posX]==0):
+        up()
+        dir.append(4)
+        return
+    if(dir[-1]==1):
+        left()
+        dir.pop()
+        return
+    if(dir[-1]==2):
+        up()
+        dir.pop()
+        return
+    if(dir[-1]==3):
+        right()
+        dir.pop()
+        return
+    if(dir[-1]==4):
+        down()
+        dir.pop()
+        return
+
+
 
 
 
