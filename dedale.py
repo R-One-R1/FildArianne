@@ -66,21 +66,26 @@ def down():
     posY += 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
-            exit(0)
+        exit(0)
 
 
 
 dir = []
 
+def blockedTop:
+    if()
+def blockedDown:
+    if()
+def blockedRight:
+    if()
+def blockedLeft:
+    if()
+
+
 def algo(value):
     right()
-    if(map[posY][posX + 1] == 1):
+    if(map[posY][posX + 1]==1 && map[posY - 1][posX]==1 && map):
         down()
-        if(map[posY + 1][posX] == 1):
-            up()
-            up()
-            if(map[posY - 1][posX]==1):
-                left()
 
 
 
