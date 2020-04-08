@@ -25,12 +25,11 @@ def right():
     global posY
     if (map[posY][posX + 1] == 1):
         return
-    setACaseXY(posX, posY, 'grey')
+    setACaseXY(posX, posY, 'cyan')
     map[posY][posX] = -1
     posX += 1
-    setACaseXY(posX, posY, 'yellow')
+    setACaseXY(posX, posY, 'orange')
     if (map[posY][posX] == 2):
-        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 def left():
@@ -38,12 +37,11 @@ def left():
     global posY
     if (map[posY][posX - 1] == 1):
         return
-    setACaseXY(posX, posY, 'grey')
+    setACaseXY(posX, posY, 'cyan')
     map[posY][posX] = -1
     posX -= 1
     setACaseXY(posX, posY, 'yellow')
     if (map[posY][posX] == 2):
-        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 def up():
@@ -51,12 +49,12 @@ def up():
     global posX
     if (map[posY - 1][posX] == 1):
         return
-    setACaseXY(posX, posY, 'grey')
+    setACaseXY(posX, posY, 'cyan')
     map[posY][posX] = -1
     posY -= 1
-    setACaseXY(posX, posY, 'yellow')
+
+    setACaseXY(posX, posY, 'green')
     if (map[posY][posX] == 2):
-        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 def down():
@@ -64,86 +62,52 @@ def down():
     global posX
     if (map[posY + 1][posX] == 1):
         return
-    setACaseXY(posX, posY, 'grey')
+    setACaseXY(posX, posY, 'cyan')
     map[posY][posX] = -1
     posY += 1
-    setACaseXY(posX, posY, 'yellow')
+    setACaseXY(posX, posY, 'violet')
     if (map[posY][posX] == 2):
-        print('Vous avez parcouru : '+nbreCase' !')
         exit(0)
 
 
 
 dir = []
 
-#def totalBlockedTop():
-#    if(map[posY - 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
-#        return True
-#    return False
+def algo(value):
 
-#def totalBlockedDown():
-#    if(map[posY + 1][posX]==1 && map[posY][posX + 1]==1 && map[posY][posX - 1]==1):
-#        return True
-#    return False
-
-#def totalBlockedRight():
-#    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX + 1]==1):
-#        return True
-#    return False
-
-#def totalBlockedLeft():
-#    if(map[posY - 1][posX]==1 && map[posY + 1][posX]==1 && map[posY][posX - 1]==1):
-#        return True
-#    return False
-def prioUp():
-    if(map[posY - 1][posX]==2):
-        up()
-        dir.append(2)
-        return
-    elif(map[posY][posX + 1]==2):
-        right()
+    if (map[posY][posX + 1] == 0 or map[posY][posX + 1]==2):
         dir.append(1)
-        return
-    elif(map[posY + 1][posX]==2):
-        down()
-        dir.append(4)
-        return
-    elif(map[posY][posX - 1]==2):
-        left()
-        dir.append(3)
-        return
-    elif(map[posY][posX + 1]==0):
         right()
-        dir.append(1)
         return
-    elif(map[posY - 1][posX]==0):
-        up()
+    if (map[posY][posX - 1] == 0 or map[posY][posX - 1] == 2):
         dir.append(2)
-        return
-    elif(map[posY][posX - 1]==0):
         left()
+        return
+    if (map[posY + 1][posX] == 0 or map[posY + 1][posX] == 2):
         dir.append(3)
-        return
-    elif(map[posY + 1][posX]==0):
         down()
+        return
+    if (map[posY - 1][posX] == 0 or map[posY - 1][posX] == 2):
         dir.append(4)
+        up()
         return
-    elif(dir[-1]==2):
-        down()
-        dir.pop()
-        return
-    elif(dir[-1]==1):
+    if (dir[-1] == 1):
         left()
         dir.pop()
         return
-    elif(dir[-1]==4):
+    if (dir[-1] == 4):
+        down()
+        dir.pop()
+        return
+    if (dir[-1] == 3):
         up()
         dir.pop()
         return
-    elif(dir[-1]==3):
+    if (dir[-1] == 2):
         right()
         dir.pop()
         return
+
 
 def prioDown():
     if(map[posY + 1][posX]==2):
