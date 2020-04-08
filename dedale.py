@@ -75,12 +75,11 @@ dir = []
 
 def algo(value):
     right()
-    if(map[posY][posX + 1] == 1):
+    while(map[posY][posX + 1] != 1):
         down()
-    if():
-        left()
-    if():
-        up()
+        while(map[posY + 1][posX] != 1):
+            up()
+
 
 
 
